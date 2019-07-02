@@ -1,0 +1,13 @@
+package com.yyr.files;
+	public class @class@ {
+	    public @type@ @property@;
+	    public @class@() {
+	    }
+	    public void set@Uproperty@(@type@  @property@){
+	        this.@property@ = @property@;
+	    }
+	      
+	    public @type@  get@Uproperty@(){
+	        return this.@property@;
+	    }
+	    }

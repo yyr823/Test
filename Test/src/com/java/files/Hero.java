@@ -1,0 +1,19 @@
+/**
+ * 
+ */
+package com.java.files;
+
+import java.io.Serializable;
+
+/**
+ * @author PE
+ * @date 2019年6月26日 下午2:06:32
+ * @explain
+ */
+public class Hero implements Serializable {
+	// 表示这个类当前的版本，如果有了变化，比如新设计了属性，就应该修改这个版本号
+	private static final long serialVersionUID = 1L;
+	public String name;
+	public float hp;
+
+}
