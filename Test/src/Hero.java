@@ -8,7 +8,7 @@
  * @explain
  */
 class Hero {
-	String name;
+	String name; 
 
 	float hp;
 
