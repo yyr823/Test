@@ -20,6 +20,8 @@ import javax.swing.JTextField;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
+import cn.hutool.core.util.ArrayUtil;
+
 /**
  * @author PE
  * @date 2019年7月1日 下午3:31:08
@@ -27,7 +29,6 @@ import javax.swing.event.ListSelectionListener;
  */
 public class TestHeroTableModel {
 	public static void main(String[] args) {
-		  
         JFrame f = new JFrame("LoL");
         f.setSize(400, 300);
         f.setLocation(200, 200);
@@ -54,9 +55,9 @@ public class TestHeroTableModel {
         final JLabel l = new JLabel("暂时未选中条目");
         p2.add(l);
   
-        //根据 TableModel来创建 Table
+        //根据 TableModel来创建 Table(注意不可漏掉)
         JTable t = new JTable(htm);
-  
+        
         JScrollPane sp = new JScrollPane(t);
         // 使用selection监听器来监听table的哪个条目被选中
         t.getSelectionModel().addListSelectionListener(
@@ -88,8 +89,6 @@ public class TestHeroTableModel {
                tfName.grabFocus();
                return;
            }
-
-
            try {
                // 把hp转换为浮点型，如果出现异常NumberFormatException表示不是浮点型格式
                Float.parseFloat(hp);
@@ -98,17 +97,13 @@ public class TestHeroTableModel {
                tfHp.grabFocus();
                return;
            }
-           
-           //暂未解决二维数组扩容:
+           //已解决二维数组扩容(HuTool):
            String[][] heros=htm.heros;
-           System.out.println(heros.length);
-           String[][] brr = Arrays.copyOf(heros,heros.length+1);
-           String[][] crr = brr;
-           crr[crr.length-1][1]=name;               //插入数据
-           crr[crr.length-1][2]=hp;   
-           htm.heros=crr;
-           
-              t.updateUI();//更新
+          String[][] heross = ArrayUtil.resize(heros, heros.length+1);
+          String[] hero= { heross.length+"", name, hp, "100" };
+           heross[heross.length-1]=hero;
+           htm.heros=heross;
+            t.updateUI();//更新
             }
         });
         f.add(p, BorderLayout.NORTH);
@@ -118,4 +113,6 @@ public class TestHeroTableModel {
   
         f.setVisible(true);
     }
+	
+
 }

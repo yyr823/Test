@@ -3,7 +3,12 @@
  */
 package com.swing.test10;
 
+import java.util.List;
+
 import javax.swing.table.AbstractTableModel;
+
+import com.swing.test12.Hero;
+import com.swing.test12.HeroDAO;
 
 /**
  * @author PE
@@ -19,9 +24,8 @@ import javax.swing.table.AbstractTableModel;
  */
 public class HeroTableModel extends AbstractTableModel {
 	String[] columnNames = new String[] { "id", "name", "hp", "damage" };
-	String[][] heros = new String[][] { { "1", "盖伦", "616", "100" }, { "2", "提莫", "512", "102" },
-			{ "3", "奎因", "832", "200" } };
-
+    public String[][] heros = new String[][] { { "1", "盖伦", "616", "100" }, { "2", "提莫", "512", "102" },
+		{ "3", "奎因", "832", "200" } };
 	// 返回一共有多少行
 	public int getRowCount() {
 		// TODO Auto-generated method stub
