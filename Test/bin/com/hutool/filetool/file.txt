@@ -1,0 +1,169 @@
+ 步骤 1 : 文件IO工具
+Hutool 里的文件IO工具有好几个
+
+IOUtil ：操作流的
+
+FileUtil ：操作文件的
+
+FileTypeUtil： 被包含在FileUtil里了
+
+FileReader，FileWriter：这两个基本上都在FileUtil里用了
+
+WatchMonitor： 用来监控文件变化， 这个比较有意思，可以看看自己c盘，平时文件都有什么变化。
+
+ClassPathResource 是class 路径下资源的获取
+
+
+步骤 2 : IOUtil 
+IOUtil 提供的方法很多，站长把常用的列出来一下，其他不怎么常用的，有兴趣的就自己看api吧
+
+把输入流的数据复制到输出流中
+ 
+long copy(InputStream in, OutputStream out)
+ 
+
+读取输入流的内容为字符串
+ 
+String read(InputStream in, String charsetName)
+ 
+
+把数据写出到输出流中
+ 
+void writeUtf8(OutputStream out, boolean isCloseOut, Object... contents)
+
+
+
+步骤 3 : FileUtil 
+是否是windows系统 (通过分隔符进行判断)
+ 
+boolean isWindows
+ 
+
+追加数据
+ 
+File appendString(String content, File file, String charset)
+ 
+
+遍历当前目录及其子目录
+ 
+List<File> loopFiles(String path)
+ 
+
+目录及其子目录所有文件的大小总和
+ 
+long size(File file)
+ 
+
+创建文件，会自动创建父文件夹。 方法名故意用linux下的命令名
+ 
+File touch(String fullFilePath)
+ 
+
+删除文件或者目录（这个很危险，会自动删除当前目录以及子目录，慎用）
+ 
+boolean del(String fullFileOrDirPath)
+ 
+
+同上
+ 
+static boolean clean(String dirPath) 
+ 
+
+复制文件或者目录
+ 
+File copyFile(String src, String dest, StandardCopyOption... options)
+ 
+
+判断俩文件内容是否一样
+ 
+boolean contentEquals(File file1, File file2)
+ 
+
+获取后缀名，不带.
+ 
+String extName(String fileName)
+ 
+
+根据文件头部信息获取文件类型
+ 
+String getType(File file)
+ 
+
+读取内容为字符串
+ 
+readString(String path, String charsetName)
+ 
+
+读取内容为集合
+ 
+List<String> readLines(String path, String charset)
+ 
+
+把字符串写入到文件
+ 
+File writeString(String content, String path, String charset)
+ 
+
+把集合写入到文件
+ 
+File writeLines(Collection<T> list, File file, String charset)
+ 
+
+转换文件编码，第一个参数必须和文件本身编码保持一致，否则就会出错。比如一个文件是GBK的，但是在UTF默认编码的环境下看到都是乱码，就可以通过这个转换一下
+ 
+File convertCharset(File file, Charset srcCharset, Charset destCharset)
+ 
+
+指定换行符，有些文件从Linux搞来的，在window下换行会混乱，可以用这个进行转换
+ 
+convertLineSeparator(File file, Charset charset, LineSeparator lineSeparator)
+ 
+
+获取CRC32校验码
+ 
+long checksumCRC32(File file)
+ 
+
+获取Web项目下的web root路径
+ 
+File getWebRoot() 
+ 
+
+根据文件后缀名 (不一定是真实格式)，获取其mimetype
+ 
+String getMimeType(String filePath)
+
+
+
+图片工具:
+因为涉及到各种图片文件，不好做演示。所以站长把方法做了下简单归纳，方便大家调用：
+ 
+缩放
+	scale
+切割
+	cut
+切片
+	slice
+类型转换
+	convert
+灰度
+	gray
+添加文字水印
+	pressText
+添加图片水印
+	pressImage
+旋转
+	rotate
+水平翻转
+	flip
+图片变成BASE-64字符串
+	toBase64
+创建字体
+	createFont
+根据文字创建图片
+	createImage
+读取图片
+	read
+随机颜色
+	randomColor
+ 

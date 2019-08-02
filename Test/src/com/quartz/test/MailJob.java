@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.quartz;
+package com.quartz.test;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

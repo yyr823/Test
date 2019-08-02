@@ -20,9 +20,9 @@ public class TestBuffer {
 	public static void main(String[] args) {
 		File f = new File("d:/encodingFile.txt");
 		// 使用缓存流读取数据
-		// testBufferedReader(f);
+		testBufferedReader(f);
 		// 使用缓存流写出数据
-		// testBufferedWriter(f);
+	     testBufferedWriter(f);
 		// 移除注释//
 		removeComments(f);
 

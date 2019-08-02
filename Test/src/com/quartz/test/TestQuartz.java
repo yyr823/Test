@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.quartz;
+package com.quartz.test;
 
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
@@ -40,7 +40,8 @@ public class TestQuartz {
 				.withIdentity("mailjob1", "mailgroup") // 定义任务名称和分组
 				.usingJobData("email", "13623760439@163.com") // 定义属性
 				.build();
-
+	       //用JobDataMap 修改email
+        job.getJobDataMap().put("email", "admin@taobao.com");
 		// 调度加入这个job
 		scheduler.scheduleJob(job, trigger);
 
